@@ -1,9 +1,6 @@
 <?php
 /******************************************************************
- classe de connect com banco e dados
- autor    : leo genilhu
- email    : leogenilhu@bol.com.br
- data     : 12/09/2003
+ classe de coneccion a la base de datos
  ******************************************************************/
 //classe database
 class database {
