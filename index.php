@@ -1,4 +1,4 @@
-<html lang="en">
+<html>
 	<head>
 		<meta charset="utf-8">
 		<title>Admin Boot</title>
