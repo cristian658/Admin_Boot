@@ -13,6 +13,7 @@
 		<script src="js/bootstrap-alerts.js"></script>
 		<script src="js/bootstrap-modal.js"></script>
 		<script src="js/jquery.tablesorter.min.js"></script>
+		<script src="js/prettify.js"></script>
 		<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
 		<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -39,6 +40,7 @@
 		</script>
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/docs.css" rel="stylesheet">
+		<link href="css/prettify.css" rel="stylesheet">
 		<style type="text/css">
 			/* Override some defaults */
 			html, body {
@@ -103,7 +105,7 @@
 		<div class="topbar">
 			<div class="fill">
 				<div class="container">
-					<a class="brand" href="/admin_boot">Admin Boot</a>
+					<a class="brand" href="/Admin_Boot">Admin Boot</a>
 					<ul class="nav">
 						<li>
 							<a href="#">Inicio</a>
@@ -188,5 +190,6 @@
 		</div>
 		<?php endforeach;?>
           <!-- /modals -->
+          <script>$(function () { prettyPrint() })</script>
 	</body>
 </html>

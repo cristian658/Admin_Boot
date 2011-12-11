@@ -6,6 +6,7 @@
 		<meta name="author" content="">
 		<script src="js/jquery-1.7.1.min.js"></script>
 		<script src="js/bootstrap-alerts.js"></script>
+		<script src="js/prettify.js"></script>
 		<?php include 'lib/lib.php';?>
 		<?php
 		
@@ -35,6 +36,7 @@
 										<p><strong>Error.</strong> El campo nombre y precio son <strong>OBLIGATORIO</strong></p>
 									  </div>';	
 					}
+					unset($producto);
 					break;
 				
 				case 'edit':
@@ -44,8 +46,27 @@
 					$texto = "Editar";
 					$acc = "Update";
 					break;
-				case '':
-					$id = $_GET['id'];
+				case 'Update':					
+					$id = $_POST['id'];
+					$producto = new producto;
+					$producto->getProducto($id);
+					$producto->nombre = $_POST['nombre'];
+					$producto->descripcion = $_POST['descripcion'];
+					$producto->precio = $_POST['precio'];
+					$producto->estado = $_POST['estado'];
+					$resp = $producto->editProducto();
+					if($resp) {
+						$respuesta = '<div class="alert-message info">
+										<a class="close" href="#">×</a>
+										<p><strong>Actualizado con exito!!.</strong> Tu producto fue editado correctamente.</p>
+									  </div>';
+					} else {
+						$respuesta = '<div class="alert-message error">
+										<a class="close" href="#">×</a>
+										<p><strong>Error.</strong> Hubo algun error al intentar editar el producto.</p>
+									  </div>';
+					}
+					$texto = "Editar";
 					break;
 			}
 			
@@ -63,6 +84,7 @@
 		<!-- Le styles -->
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/docs.css" rel="stylesheet">
+		<link href="css/prettify.css" rel="stylesheet">
 		<style type="text/css">
 			/* Override some defaults */
 			html, body {
@@ -89,7 +111,7 @@
 				-moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
 				box-shadow: 0 1px 2px rgba(0,0,0,.15);
 			}
-			/* Page header tweaks */
+			/* Page header twetable.config.parsers is undefinedaks */
 			.page-header {
 				background-color: #f5f5f5;
 				padding: 20px 20px 10px;
@@ -153,7 +175,7 @@
 								<div class="clearfix">
             						<label for="textarea">Descripción</label>
             						<div class="input">
-							            <textarea rows="3" name="descripcion" id="descripcion" class="xxlarge" style="width: 378px; height: 61px;"><?=$producto->nombre?></textarea>
+							            <textarea rows="3" name="descripcion" id="descripcion" class="xxlarge" style="width: 378px; height: 61px;"><?=$producto->descripcion?></textarea>
             						</div>
           						</div><!-- /Descripcion -->
 								<div class="clearfix">
@@ -178,6 +200,7 @@
 									</div>
 								</div>
 								<input type="hidden" id="acc" name="acc" value="<?=$acc;?>" />
+								<input type="hidden" id="id" name="id" value="<?=$producto->id;?>" />
 							</fieldset>
 						</form>
 					</div>
@@ -196,5 +219,6 @@
 		<!-- /container -->
 		<!-- modals -->
 		<!-- /modals -->
+		<script>$(function () { prettyPrint() })</script>
 	</body>
 </html>

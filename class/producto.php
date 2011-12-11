@@ -93,6 +93,14 @@ class producto {
 		return $this->acc;
 		
 	}
+	public function editProducto() {
+		$cnx = new database();
+		$this->acc = $cnx->query_db("UPDATE $this->tab SET nombre = '$this->nombre', descripcion = '$this->descripcion', 
+									precio = '$this->precio', estado = '$this->estado' WHERE id = $this->id");
+		$cnx->close_db();
+		return $this->acc;
+		
+	}
 	public function getProductos() {
 		$productos = array();
 		$cnx = new database();
